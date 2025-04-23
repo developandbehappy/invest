@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ООО Инвестпалата | Брокерские услуги</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8a2be2;
+            --primary-light: #a866e9;
+            --primary-dark: #6a1cb1;
+            --secondary-color: #4CAF50;
+            --tertiary-color: #2196F3;
+            --text-color: #333333;
+            --text-light: #666666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #e8eaf6;
+            --border-color: #e0e0e0;
+            --positive: #4CAF50;
+            --negative: #F44336;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-outline.light {
+            color: white;
+            border-color: white;
+        }
+
+        .btn-outline.light:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .logo img {
+            margin-right: 10px;
+        }
+
+        .desktop-nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        .desktop-nav a {
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .desktop-nav a.active {
+            color: var(--primary-color);
+        }
+
+        .desktop-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .auth-tools {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background-color: var(--bg-color);
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-menu nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-menu nav a {
+            display: block;
+            padding: 10px 0;
+            font-weight: 500;
+        }
+
+        .mobile-menu nav a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-auth {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-auth .btn {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-light);
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .service-icon i {
+            font-size: 30px;
+            color: var(--primary-color);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .card-link i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Market Data Section */
+        .market-data {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .market-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .market-card {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .market-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .market-info h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .market-info .price {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .market-info .change {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .change.positive {
+            color: var(--positive);
+        }
+
+        .change.negative {
+            color: var(--negative);
+        }
+
+        .change i {
+            margin-left: 5px;
+        }
+
+        .market-chart {
+            width: 100px;
+            height: 50px;
+        }
+
+        .chart-container {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Продолжение CSS файла */
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .period-btn {
+            padding: 5px 12px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .period-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        #mainChart {
+            width: 100%;
+            height: 300px;
+        }
+
+        .placeholder-text {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* News Section */
+        .news {
+            padding: 80px 0;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 25px;
+        }
+
+        .news-card {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-card.featured {
+            grid-column: span 3;
+            display: flex;
+            align-items: center;
+        }
+
+        .news-card.featured .news-image {
+            flex: 1;
+        }
+
+        .news-card.featured .news-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-card.featured .news-image img {
+            height: 100%;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            display: block;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .news-content h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .view-all {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #272727;
+            color: #e0e0e0;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column p {
+            margin: 20px 0;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            opacity: 1;
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links i {
+            font-size: 18px;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            margin-top: 3px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            margin-top: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .subscribe-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .subscribe-form button {
+            padding: 0 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .subscribe-form button:hover {
+            background-color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            opacity: 0.7;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .legal-links a {
+            font-size: 14px;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .legal-links a:hover {
+            opacity: 1;
+        }
+
+        .disclaimer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+            line-height: 1.6;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .market-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .news-card.featured {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .market-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .legal-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .auth-tools .btn-secondary {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>ООО Инвестпалата</span>
+                </div>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="#" class="active">Главная</a></li>
+                        <li><a href="#">Инвестиции</a></li>
+                        <li><a href="#">Ценные бумаги</a></li>
+                        <li><a href="#">Аналитика</a></li>
+                        <li><a href="#">О компании</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-tools">
+                    <a href="#" class="btn btn-secondary">Войти</a>
+                    <a href="#" class="btn btn-primary">Открыть счёт</a>
+                    <button class="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <span>ООО Инвестпалата</span>
+            </div>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Главная</a></li>
+                <li><a href="#">Инвестиции</a></li>
+                <li><a href="#">Ценные бумаги</a></li>
+                <li><a href="#">Аналитика</a></li>
+                <li><a href="#">О компании</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-auth">
+            <a href="#" class="btn btn-secondary">Войти</a>
+            <a href="#" class="btn btn-primary">Открыть счёт</a>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Инвестируйте в будущее с профессионалами</h1>
+                        <p>Доступ к российским и международным биржам, профессиональное обслуживание и аналитика от
+                            ведущих экспертов.</p>
+                        <div class="hero-cta">
+                            <a href="#" class="btn btn-primary">Начать инвестировать</a>
+                            <a href="#" class="btn btn-outline">Узнать больше</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Наши услуги</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Акции</h3>
+                        <p>Торговля акциями российских и зарубежных компаний с минимальными комиссиями</p>
+                        <a href="#" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3>Облигации</h3>
+                        <p>Государственные и корпоративные облигации с фиксированным доходом</p>
+                        <a href="#" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Доверительное управление</h3>
+                        <p>Передайте управление активами нашим профессиональным управляющим</p>
+                        <a href="#" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>ИИС</h3>
+                        <p>Индивидуальные инвестиционные счета с налоговыми вычетами до 52 000 ₽ в год</p>
+                        <a href="#" class="card-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="market-data">
+            <div class="container">
+                <h2 class="section-title">Рыночные данные</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="indices">Индексы</button>
+                    <button class="tab-btn" data-tab="stocks">Акции</button>
+                    <button class="tab-btn" data-tab="bonds">Облигации</button>
+                    <button class="tab-btn" data-tab="currencies">Валюты</button>
+                </div>
+
+                <div class="tab-content active" id="indices">
+                    <div class="market-cards">
+                        <div class="market-card">
+                            <div class="market-info">
+                                <h3>Индекс МосБиржи</h3>
+                                <p class="price">3295.42</p>
+                                <p class="change positive">+2.15% <i class="fas fa-caret-up"></i></p>
+                            </div>
+                            <div class="market-chart">
+                                <canvas class="mini-chart" data-type="line" data-color="#4CAF50"></canvas>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-info">
+                                <h3>S&P 500</h3>
+                                <p class="price">4,732.15</p>
+                                <p class="change positive">+0.41% <i class="fas fa-caret-up"></i></p>
+                            </div>
+                            <div class="market-chart">
+                                <canvas class="mini-chart" data-type="line" data-color="#4CAF50"></canvas>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-info">
+                                <h3>NASDAQ</h3>
+                                <p class="price">14,846.05</p>
+                                <p class="change positive">+0.82% <i class="fas fa-caret-up"></i></p>
+                            </div>
+                            <div class="market-chart">
+                                <canvas class="mini-chart" data-type="line" data-color="#4CAF50"></canvas>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div class="market-info">
+                                <h3>DAX</h3>
+                                <p class="price">15,893.53</p>
+                                <p class="change negative">-0.31% <i class="fas fa-caret-down"></i></p>
+                            </div>
+                            <div class="market-chart">
+                                <canvas class="mini-chart" data-type="line" data-color="#F44336"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h3>Индекс МосБиржи</h3>
+                            <div class="chart-controls">
+                                <button class="period-btn active" data-period="1d">1Д</button>
+                                <button class="period-btn" data-period="1w">1Н</button>
+                                <button class="period-btn" data-period="1m">1М</button>
+                                <button class="period-btn" data-period="3m">3М</button>
+                                <button class="period-btn" data-period="1y">1Г</button>
+                                <button class="period-btn" data-period="all">Всё</button>
+                            </div>
+                        </div>
+                        <canvas id="mainChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="stocks">
+                    <p class="placeholder-text">Здесь будут отображаться данные по акциям</p>
+                </div>
+
+                <div class="tab-content" id="bonds">
+                    <p class="placeholder-text">Здесь будут отображаться данные по облигациям</p>
+                </div>
+
+                <div class="tab-content" id="currencies">
+                    <p class="placeholder-text">Здесь будут отображаться данные по валютам</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="container">
+                <h2 class="section-title">Новости и аналитика</h2>
+                <div class="news-grid">
+                    <div class="news-card featured">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/600x400/e8eaf6/8a2be2?text=Новость" alt="Новость">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">15 августа 2023</span>
+                            <h3>О порядке переноса части расходов на приобретение акций и применения налоговых вычетов и
+                                льгот</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at venenatis urna. Fusce
+                                at felis a velit molestie tincidunt non non metus. Suspendisse potenti.</p>
+                            <a href="#" class="card-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x200/e8eaf6/8a2be2?text=Новость" alt="Новость">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">10 августа 2023</span>
+                            <h3>Информация для пользователей Vision</h3>
+                            <p>Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis...</p>
+                            <a href="#" class="card-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x200/e8eaf6/8a2be2?text=Новость" alt="Новость">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">5 августа 2023</span>
+                            <h3>Сообщения о корпоративных действиях по ценным бумагам</h3>
+                            <p>Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum...
+                            </p>
+                            <a href="#" class="card-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-image">
+                            <img src="https://via.placeholder.com/400x200/e8eaf6/8a2be2?text=Новость" alt="Новость">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">1 августа 2023</span>
+                            <h3>Маркетинговая акция «Отменяем вознаграждение брокера за обслуживание»</h3>
+                            <p>Fusce commodo aliquam arcu. Nam commodo suscipit quam. Vestibulum ullamcorper mauris...
+                            </p>
+                            <a href="#" class="card-link">Читать полностью <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-all">
+                    <a href="#" class="btn btn-outline">Все новости</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Готовы начать инвестировать?</h2>
+                    <p>Откройте счет за 5 минут и начните инвестировать уже сегодня</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-primary">Открыть счет</a>
+                        <a href="#" class="btn btn-outline light">Связаться с нами</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <span>ООО Инвестпалата</span>
+                    </div>
+                    <p>ООО Инвестпалата - брокерская компания, основанная в 1997 году. Лицензия профессионального
+                        участника рынка ценных бумаг на осуществление брокерской деятельности № XXX-XXXXX от XX.XX.XXXX.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Услуги</h3>
+                    <ul>
+                        <li><a href="#">Брокерское обслуживание</a></li>
+                        <li><a href="#">Доверительное управление</a></li>
+                        <li><a href="#">Индивидуальные инвестиционные счета</a></li>
+                        <li><a href="#">Торговые платформы</a></li>
+                        <li><a href="#">Аналитика</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Лицензии</a></li>
+                        <li><a href="#">Тарифы</a></li>
+                        <li><a href="#">Раскрытие информации</a></li>
+                        <li><a href="#">Карьера</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Инвестиционная, д. 1</li>
+                        <li><i class="fas fa-phone"></i> 8 (800) 123-45-67</li>
+                        <li><i class="fas fa-envelope"></i> info@ООО Инвестпалата.ru</li>
+                    </ul>
+                    <div class="subscribe">
+                        <h3>Подписаться на новости</h3>
+                        <form class="subscribe-form">
+                            <input type="email" placeholder="Ваш email" required>
+                            <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ООО Инвестпалата. Все права защищены.</p>
+                <div class="legal-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Правовая информация</a>
+                </div>
+            </div>
+            <div class="disclaimer">
+                <p>Предупреждение о рисках: инвестиции в ценные бумаги сопряжены с высоким уровнем риска. Стоимость
+                    активов может как увеличиваться, так и уменьшаться в зависимости от ситуации на финансовых рынках.
+                    Клиент может потерять часть или всю сумму инвестированных средств.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu functionality
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const menuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            menuToggle.addEventListener('click', function () {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            menuClose.addEventListener('click', function () {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(this.dataset.tab).classList.add('active');
+                });
+            });
+
+            // Period buttons functionality
+            const periodButtons = document.querySelectorAll('.period-btn');
+
+            periodButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    periodButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // updateMainChart(this.dataset.period);
+                });
+            });
+
+            // Initialize mini charts
+            const miniCharts = document.querySelectorAll('.mini-chart');
+
+            miniCharts.forEach(canvas => {
+                const ctx = canvas.getContext('2d');
+                const color = canvas.dataset.color;
+
+                // Generate random data for demonstration
+                const data = generateRandomData(20);
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array(data.length).fill(''),
+                        datasets: [{
+                            data: data,
+                            borderColor: color,
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Initialize main chart
+            const mainChartCtx = document.getElementById('mainChart').getContext('2d');
+            let mainChart;
+
+            function updateMainChart(period) {
+                const data = generateChartData(period);
+
+                if (mainChart) {
+                    mainChart.destroy();
+                }
+
+                mainChart = new Chart(mainChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Индекс МосБиржи',
+                            data: data.values,
+                            borderColor: '#8a2be2',
+                            backgroundColor: 'rgba(138, 43, 226, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 2,
+                            pointHoverRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                                titleColor: '#333',
+                                bodyColor: '#666',
+                                borderColor: '#e0e0e0',
+                                borderWidth: 1,
+                                padding: 10,
+                                displayColors: false,
+                                callbacks: {
+                                    label: function (context) {
+                                        return `Цена: ${context.parsed.y.toFixed(2)}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxRotation: 0,
+                                    autoSkipPadding: 15
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    borderDash: [5, 5]
+                                },
+                                ticks: {
+                                    callback: function (value) {
+                                        return value.toFixed(0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Initialize with default '1d' period
+            // updateMainChart('1d');
+
+            // Helper function to generate random data for charts
+            function generateRandomData(points) {
+                const data = [];
+                let value = Math.random() * 100 + 2000;
+
+                for (let i = 0; i < points; i++) {
+                    value += Math.random() * 50 - 25;
+                    data.push(value);
+                }
+
+                return data;
+            }
+
+            // Helper function to generate chart data based on period
+            function generateChartData(period) {
+                const data = { labels: [], values: [] };
+                let points;
+                let startValue = 3200 + Math.random() * 100;
+                let volatility;
+
+                switch (period) {
+                    case '1d':
+                        points = 24;
+                        volatility = 5;
+                        // Create hourly labels for 1 day
+                        for (let i = 0; i < points; i++) {
+                            data.labels.push(`${i}:00`);
+                        }
+                        break;
+                    case '1w':
+                        points = 7;
+                        volatility = 15;
+                        // Create daily labels for 1 week
+                        for (let i = 0; i < points; i++) {
+                            const day = new Date();
+                            day.setDate(day.getDate() - (6 - i));
+                            data.labels.push(day.toLocaleDateString('ru-RU', { weekday: 'short' }));
+                        }
+                        break;
+                    case '1m':
+                        points = 30;
+                        volatility = 30;
+                        // Create date labels for 1 month
+                        for (let i = 0; i < points; i++) {
+                            const day = new Date();
+                            day.setDate(day.getDate() - (29 - i));
+                            data.labels.push(day.getDate().toString());
+                        }
+                        break;
+                    case '3m':
+                        points = 12;
+                        volatility = 50;
+                        // Create weekly labels for 3 months
+                        for (let i = 0; i < points; i++) {
+                            data.labels.push(`Нед ${i + 1}`);
+                        }
+                        break;
+                    case '1y':
+                        points = 12;
+                        volatility = 100;
+                        // Create monthly labels for 1 year
+                        const months = ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
+                        for (let i = 0; i < points; i++) {
+                            data.labels.push(months[i]);
+                        }
+                        break;
+                    case 'all':
+                        points = 10;
+                        volatility = 250;
+                        // Create yearly labels for all time
+                        const currentYear = new Date().getFullYear();
+                        for (let i = 0; i < points; i++) {
+                            data.labels.push((currentYear - (points - 1) + i).toString());
+                        }
+                        break;
+                    default:
+                        points = 24;
+                        volatility = 5;
+                        for (let i = 0; i < points; i++) {
+                            data.labels.push(`${i}:00`);
+                        }
+                }
+
+                // Generate random price values with trend
+                let value = startValue;
+                for (let i = 0; i < points; i++) {
+                    value += (Math.random() - 0.4) * volatility; // Slight upward bias
+                    data.values.push(value);
+                }
+
+                return data;
+            }
+
+            // Animate numbers when in viewport
+            function animateNumbers() {
+                const prices = document.querySelectorAll('.price');
+
+                prices.forEach(price => {
+                    const value = parseFloat(price.textContent);
+                    const decimalPlaces = price.textContent.includes('.')
+                        ? price.textContent.split('.')[1].length
+                        : 0;
+
+                    let startValue = value * 0.9;
+                    const endValue = value;
+                    const duration = 1500;
+                    const startTime = performance.now();
+
+                    function updateNumber(currentTime) {
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / duration, 1);
+                        // Easing function for smoother animation
+                        const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+
+                        const currentValue = startValue + (endValue - startValue) * easedProgress;
+                        price.textContent = currentValue.toFixed(decimalPlaces);
+
+                        if (progress < 1) {
+                            // requestAnimationFrame(updateNumber);
+                        } else {
+                            price.textContent = endValue.toFixed(decimalPlaces);
+                        }
+                    }
+
+                    requestAnimationFrame(updateNumber);
+                });
+            }
+
+            // Run animations when page loads
+            setTimeout(animateNumbers, 500);
+
+            // Handle scrolling animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe service cards for animations
+            document.querySelectorAll('.service-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe news cards for animations
+            document.querySelectorAll('.news-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
